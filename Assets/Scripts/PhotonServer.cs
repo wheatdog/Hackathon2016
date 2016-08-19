@@ -13,6 +13,12 @@ public class PhotonServer : Photon.MonoBehaviour {
 	int currentClientNum = 0;
 	public ShowStatusWhenConnecting showStatusWhenConnecting;
 
+	[PunRPC]
+	void Move(Vector2 input)
+	{
+		Debug.Log (input);
+	}
+
 	public virtual void Start()
 	{
 		PhotonNetwork.autoJoinLobby = true;    // we join randomly. always. no need to join a lobby to get the list of rooms.

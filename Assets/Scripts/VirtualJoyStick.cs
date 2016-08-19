@@ -13,6 +13,12 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
         bg = GetComponent<Image>();
         joystick = transform.GetChild(0).GetComponent<Image>();
     }
+		
+	[PunRPC]
+    void Move(Vector2 input)
+	{
+		Debug.Log (input);
+	}
 
     public void OnDrag(PointerEventData e) {
         Vector2 pos;
@@ -25,6 +31,7 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
 
             joystick.rectTransform.anchoredPosition = new Vector2(input.x * bg.rectTransform.sizeDelta.x / 4.0f, input.y * bg.rectTransform.sizeDelta.y / 4.0f);
             Debug.Log(input);
+			GetComponent<PhotonView>().RPC ("Move", PhotonTargets.MasterClient, input);
         }
     }
 

@@ -19,7 +19,7 @@ public class PhotonClient : Photon.MonoBehaviour {
 	}
 
 		void OnReceivedRoomListUpdate(){
-	Debug.Log("OnReceivedRoomListUpdate");
+		Debug.Log("OnReceivedRoomListUpdate");
 
 		}
 
@@ -108,5 +108,7 @@ public class PhotonClient : Photon.MonoBehaviour {
 	public void OnJoinedRoom()
 	{
 		Debug.Log(classStr + "OnJoinedRoom");
+		//UnityEngine.SceneManagement.SceneManager.LoadScene ("client");
+		PhotonNetwork.LoadLevel("client");
 	}
 }
