@@ -16,6 +16,21 @@ public class ShowStatusWhenConnecting : MonoBehaviour
 	int currentClientNum = 0;
 
 
+	public int resizeX, resizeY;
+  Rect ResizeGUI(Rect _rect)
+  {
+      float FilScreenWidth = _rect.width / resizeX;
+      float rectWidth = FilScreenWidth * Screen.width;
+      float FilScreenHeight = _rect.height / resizeY;
+      float rectHeight = FilScreenHeight * Screen.height;
+      float rectX = (_rect.x / resizeX) * Screen.width;
+      float rectY = (_rect.y / resizeY) * Screen.height;
+
+      return new Rect(rectX,rectY,rectWidth,rectHeight);
+  }
+
+
+
 	public void setClientName(int currentClientNum, string str){
 		Debug.Log ("index" + (currentClientNum-1) + " " + str);
 		clientNameList [currentClientNum-1] = str;
@@ -30,7 +45,7 @@ public class ShowStatusWhenConnecting : MonoBehaviour
         }
 
 		if (isClient) {//-120, 150, 100, -160
-			Rect centeredRect = new Rect (x, y, width, height);
+			Rect centeredRect = ResizeGUI(new Rect(x, y, width, height));
 			GUILayout.BeginArea (centeredRect, GUI.skin.box);
 			{
 				GUILayout.Label ("Connecting" + GetConnectingDots (), GUI.skin.customStyles [0]);
@@ -48,7 +63,7 @@ public class ShowStatusWhenConnecting : MonoBehaviour
 				GUILayout.EndArea ();
 				clientRect = new Rect[maxClientNum-1];
 				for (int i = 0; i < maxClientNum-1; i++) {
-					clientRect [i] = new Rect (x + clientOffsetX + clientIntervalX * i, y + clientOffsetY, width + clientWidthOffset, height);
+					clientRect [i] = ResizeGUI(new Rect(x + clientOffsetX + clientIntervalX * i, y + clientOffsetY, width + clientWidthOffset, height));
 					//200+120*i, y+100, width-130,
 					GUILayout.BeginArea (clientRect [i], GUI.skin.box);
 					{
@@ -65,7 +80,7 @@ public class ShowStatusWhenConnecting : MonoBehaviour
 			}
 
 		} else {
-			Rect centeredRect = new Rect (x, y, width, height);
+			Rect centeredRect = ResizeGUI(new Rect(x, y, width, height));
 			GUILayout.BeginArea (centeredRect, GUI.skin.box);
 			{
 				GUILayout.Label ("Connecting" + GetConnectingDots (), GUI.skin.customStyles [0]);
@@ -74,7 +89,7 @@ public class ShowStatusWhenConnecting : MonoBehaviour
 			GUILayout.EndArea ();
 
 			if (PhotonNetwork.inRoom) {
-			
+
 				GUILayout.BeginArea (centeredRect, GUI.skin.box);
 				{
 					GUILayout.Label ("Complete", GUI.skin.customStyles [0]);
@@ -83,7 +98,7 @@ public class ShowStatusWhenConnecting : MonoBehaviour
 				GUILayout.EndArea ();
 				clientRect = new Rect[maxClientNum];
 				for (int i = 0; i < maxClientNum; i++) {
-					clientRect [i] = new Rect (x + clientOffsetX + clientIntervalX * i, y + clientOffsetY, width + clientWidthOffset, height);
+					clientRect [i] =ResizeGUI(new Rect(x + clientOffsetX + clientIntervalX * i, y + clientOffsetY, width + clientWidthOffset, height));
 					//200+120*i, y+100, width-130,
 					GUILayout.BeginArea (clientRect [i], GUI.skin.box);
 					{
