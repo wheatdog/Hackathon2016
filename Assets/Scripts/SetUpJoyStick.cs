@@ -5,6 +5,6 @@ public class SetUpJoyStick : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PhotonNetwork.InstantiateSceneObject( "virtual_joystick", new Vector3( -4.5f, 5.5f, 0 ), Quaternion.identity, 0, null );
+		PhotonNetwork.Instantiate("vj", new Vector3( -4.5f, 5.5f, 0 ), Quaternion.identity, 0, null );
 	}
 }
