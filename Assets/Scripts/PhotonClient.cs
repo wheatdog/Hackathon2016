@@ -14,7 +14,7 @@ public class PhotonClient : Photon.MonoBehaviour {
 
 	public virtual void Start()
 	{
-		PhotonNetwork.autoJoinLobby = true;    // we join randomly. always. no need to join a lobby to get the list of rooms.
+		PhotonNetwork.autoJoinLobby = false;    // we join randomly. always. no need to join a lobby to get the list of rooms.
 		joinRoom();
 	}
 
@@ -81,7 +81,7 @@ public class PhotonClient : Photon.MonoBehaviour {
 		Debug.Log(classStr + "OnConnectedToMaster");
 
 
-		//PhotonNetwork.JoinRandomRoom();
+		PhotonNetwork.JoinRandomRoom();
 	}
 
 	public virtual void OnJoinedLobby()
