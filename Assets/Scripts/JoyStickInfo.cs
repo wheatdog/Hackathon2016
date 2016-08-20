@@ -4,6 +4,7 @@ using System.Collections;
 public class JoyStickInfo : Photon.MonoBehaviour {
 
     public VirtualJoyStick joystick;
+	public initMap gm;
 	private PhotonView pv;
 	private int frame_per_update = 3;
 	private int update_counter = 0;
@@ -11,11 +12,13 @@ public class JoyStickInfo : Photon.MonoBehaviour {
 	[PunRPC]
     void Move(int id, Vector2 input)
 	{
+		gm.inputs [id].stick = input;
 		Debug.Log (id.ToString() + ": " + input.ToString());
 	}
 
     void Start() {
 		joystick = GameObject.Find("Canvas").GetComponentInChildren<VirtualJoyStick>();
+		gm = GameObject.Find ("GameManager").GetComponent<GameManager> ();
 
 		if (joystick) {
 			if (joystick.isReference) {
