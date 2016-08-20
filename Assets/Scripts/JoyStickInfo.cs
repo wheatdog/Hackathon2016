@@ -15,11 +15,13 @@ public class JoyStickInfo : Photon.MonoBehaviour {
     void Start() {
 		joystick = GameObject.Find("Canvas").GetComponentInChildren<VirtualJoyStick>();
 
-		if (joystick.isReference) {
-			joystick = null;
-		} 
-		else {
-			joystick.isReference = true;
+		if (joystick) {
+			if (joystick.isReference) {
+				joystick = null;
+			} 
+			else {
+				joystick.isReference = true;
+			}
 		}
 
 		pv = GetComponent<PhotonView> ();
