@@ -9,8 +9,8 @@ public class levelLoader : MonoBehaviour {
 	public Text text;
 	// Use this for initialization
 	void Start () {
-		if (SceneManager.GetActiveScene ().name == "menu")
-			iTween.MoveBy(text.gameObject,iTween.Hash("x",400,"time", 1.5f, "easeType","easeInOutQuad"));
+		// if (SceneManager.GetActiveScene ().name == "menu")
+			// iTween.MoveBy(text.gameObject,iTween.Hash("x",400,"time", 1.5f, "easeType","easeInOutQuad"));
 	}
 
 	// Update is called once per frame
