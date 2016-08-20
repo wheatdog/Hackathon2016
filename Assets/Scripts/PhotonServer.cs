@@ -13,11 +13,7 @@ public class PhotonServer : Photon.MonoBehaviour {
 	int currentClientNum = 0;
 	public ShowStatusWhenConnecting showStatusWhenConnecting;
 
-	[PunRPC]
-	void Move(Vector2 input)
-	{
-		Debug.Log (input);
-	}
+
 
 	public virtual void Start()
 	{

@@ -5,6 +5,12 @@ public class JoyStickInfo : Photon.MonoBehaviour {
 
     public VirtualJoyStick joystick;
 
+	[PunRPC]
+	void Move(Vector2 input)
+	{
+		Debug.Log (input);
+	}
+
     void Start() {
 		joystick = GameObject.Find("Canvas").GetComponentInChildren<VirtualJoyStick>();
     }
