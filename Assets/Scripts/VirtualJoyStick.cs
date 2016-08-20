@@ -8,6 +8,7 @@ public class VirtualJoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, I
     private Image bg;
     private Image joystick;
     public Vector2 input;
+	public bool isReference = false;
 
     void Start() {
         bg = GetComponent<Image>();
