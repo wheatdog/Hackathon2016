@@ -5,6 +5,8 @@ public class JoyStickInfo : Photon.MonoBehaviour {
 
     public VirtualJoyStick joystick;
 	private PhotonView pv;
+	private int frame_per_update = 3;
+	private int update_counter = 0;
 
 	[PunRPC]
     void Move(int id, Vector2 input)
@@ -31,9 +33,12 @@ public class JoyStickInfo : Photon.MonoBehaviour {
         if (PhotonNetwork.connectionStateDetailed != ClientState.Joined) {
             return;
         }
+		update_counter = (update_counter + 1) % frame_per_update;
         if (!PhotonNetwork.isMasterClient) {
 			if (joystick && !joystick.input.Equals (Vector2.zero)) {
-				pv.RPC ("Move", PhotonTargets.MasterClient, pv.owner.ID, joystick.input);
+				if (update_counter == 0) {
+					pv.RPC ("Move", PhotonTargets.MasterClient, pv.owner.ID, joystick.input);
+				}
 			}
         }
     }
