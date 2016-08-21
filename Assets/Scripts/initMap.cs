@@ -22,20 +22,22 @@ class MapEvent{
 
 public class initMap : MonoBehaviour {
 	public PlayerManager playerManager;
-	int inTrapNum, inMonsterNum, inFinalNum;
-	bool isGameEnd;
-	public int time = 100;
-	public GameObject chair;
+	public int gameTime = 100;
 
+	//trap
 	public float trapDistance;
 	public GameObject[] traps;
 	public int[] inTrapNums;
 	public int[] requireInTrapNum;
 	public GameObject[] lockdoor;
 
-	public GameObject boss, clear;
+
+	public GameObject boss, clear, chair;
 	public GameObject[] items;
+
 	List<MapEvent> mapEvents = new List<MapEvent>();
+	int inTrapNum, inMonsterNum, inFinalNum;
+	bool isGameEnd;
 
 	// Use this for initialization
 	void Start () {
@@ -144,7 +146,7 @@ public class initMap : MonoBehaviour {
 	}
 	
 
-	void Update () {//handle game logics
+	void FixedUpdate () {//handle game logics
 		//check game end criteria
 		if (isGameEnd){
 			Debug.Log ("Game End");
@@ -170,7 +172,6 @@ public class initMap : MonoBehaviour {
 		}
 		//show game info
 		//updateGameInfo();//score calculation data
-		//udpate ();
 	}
 
 }

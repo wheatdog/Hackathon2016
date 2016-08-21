@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//reference: http://answers.unity3d.com/questions/29183/2d-camera-smooth-follow.html
+
 public class SmoothCamera2D : MonoBehaviour {
   public float dampTime = 0.15f;
   private Vector3 velocity = Vector3.zero;

@@ -7,11 +7,17 @@ public class Player : MonoBehaviour {
 	public string item = "None";
 	public GameObject itemObject;
 	public int INT = 10;//intelligence
-	public int moveSpeed = 10;
+	public int moveSpeed = 10;//TODO: run by speed
 	public int damage = 10;
 	public UnityEngine.UI.Image healthBar;
 	public int score = 0;
 	public SpriteRenderer roleUI;
+	public Sprite deadSprite;
+
+	public void move(Vector3 v){//TODO: move at here to avoid dead moving
+		if(health >= 0)
+			this.gameObject.transform.Translate (v);
+	}
 
 	public void SetItem(GameObject go){
 		itemObject = go;
@@ -21,7 +27,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void changeHealth(int value){
-		health += value;
+		if(health >= 0)
+			health += value;
 	}
 
 	public void updateUI(){
@@ -29,11 +36,13 @@ public class Player : MonoBehaviour {
 			itemObject.transform.position = roleUI.transform.position;
 	}
 	public void updateHealth(){
-		healthBar.transform.localScale = new Vector3((float)health / 100, 1, 1);
+		if (health >= 0)
+			healthBar.transform.localScale = new Vector3((float)health / 100, 1, 1);
 	}
 	public void checkDead(){
 		if (health <= 0) {
 			Debug.Log ("I am dead");
+			GetComponent<SpriteRenderer>().sprite = deadSprite;
 		}
 	}
 
