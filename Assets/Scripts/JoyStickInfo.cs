@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public class JoyStickInfo : Photon.MonoBehaviour {
@@ -12,13 +13,23 @@ public class JoyStickInfo : Photon.MonoBehaviour {
 	[PunRPC]
     void Move(int id, Vector2 input)
 	{
-		gm.inputs [id].stick = input;
+		Debug.Assert (gm != null);
+		gm.inputs.stick = input;
 		Debug.Log (id.ToString() + ": " + input.ToString());
+
 	}
 
     void Start() {
 		joystick = GameObject.Find("Canvas").GetComponentInChildren<VirtualJoyStick>();
-		gm = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+		HashSet<GameObject> r = PhotonNetwork.FindGameObjectsWithComponent	(typeof(initMap));	
+		Debug.Assert (r.Count > 0);
+		Debug.Log ("I found initMap");
+		foreach (GameObject i in r) {
+			Debug.Log ("I found initMap");
+			gm = i.GetComponent<initMap>();
+		}
+		Debug.Assert (gm);
+
 
 		if (joystick) {
 			if (joystick.isReference) {
