@@ -5,6 +5,7 @@ public class playerInputReader : MonoBehaviour {
 
 	public Player player;
 	public float speedInverse;
+	public char[] inputKey;
 	// Use this for initialization
 	void Start () {
 	}
@@ -15,18 +16,18 @@ public class playerInputReader : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey("w")) {
-			player.move (Vector3.up / speedInverse);
+		if (Input.GetKey(inputKey[0]+"")) {
+			player.move (Vector3.up);
 		}
-		else if (Input.GetKey("a")) {
-			player.move (Vector3.left/speedInverse);
+		else if (Input.GetKey(inputKey[1]+"")) {
+			player.move (Vector3.left);
 
 		}
-		else if (Input.GetKey("d")) {
-			player.move  (Vector3.right/speedInverse);
+		else if (Input.GetKey(inputKey[2]+"")) {
+			player.move  (Vector3.down);
 		}
-		else if (Input.GetKey("s")) {
-			player.move  (Vector3.down/speedInverse);
+		else if (Input.GetKey(inputKey[3]+"")) {
+			player.move  (Vector3.right);
 		}
 	}
 }
